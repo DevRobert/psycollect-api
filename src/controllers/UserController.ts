@@ -4,6 +4,14 @@ import * as uuidv4 from "uuid/v4"
 import User from "../model/User"
 
 export async function getUsers(request: Request, response: Response) {
+    if(!request.user.admin) {
+        response.status(403).send({
+            error: "Access is only granted for admins."
+        })
+
+        return
+    }
+    
     const users = await UserRepository.getAllUsers()
 
     response.status(200).send(users.map(user => {
@@ -17,6 +25,14 @@ export async function getUsers(request: Request, response: Response) {
 }
 
 export async function createUser(request: Request, response: Response) {
+    if(!request.user.admin) {
+        response.status(403).send({
+            error: "Access is only granted for admins."
+        })
+
+        return
+    }
+    
     const email = request.body.email
 
     if(!email) {
