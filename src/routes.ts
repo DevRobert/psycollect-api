@@ -1,18 +1,12 @@
 import { Request, Response, Application } from "express"
+import * as AuthenticationController from "./controllers/AuthenticationController"
 import * as UserController from "./controllers/UserController"
 
 export default class Routes {
     public static configure(app: Application): void {
         // Authentication
 
-        app.route('/login').post((request: Request, response: Response) => {
-            response.status(200).send({
-                "userid": "test",
-                "email": "test@example.com",
-                "admin": true,
-                "enabled": true
-            })
-        })
+        app.route('/login').post(AuthenticationController.login)
 
         // User
 

@@ -18,6 +18,9 @@ export default class User {
     }
 
     public checkPassword(password: string): boolean {
+        console.log("password: " + password)
+        console.log("t-password", this.password)
+        
         return bcrypt.compareSync(password, this.password)
     }
 }

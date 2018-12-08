@@ -15,6 +15,7 @@ export default class UserRepository {
         user.email = item.Email
         user.admin = item.Admin
         user.enabled = item.Enabled
+        user.password = item.Password
         return user
     }
 
