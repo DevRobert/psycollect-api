@@ -8,60 +8,58 @@ AWS.config.update({
 const documentClient = new AWS.DynamoDB.DocumentClient()
 const tableName = 'psycollect-users'
 
-export default class UserRepository {
-    static itemToUser(item: any): User {
-        const user = new User
-        user.id = item.UserId
-        user.email = item.Email
-        user.admin = item.Admin
-        user.enabled = item.Enabled
-        user.password = item.Password
-        return user
+function itemToUser(item: any): User {
+    const user = new User
+    user.id = item.UserId
+    user.email = item.Email
+    user.admin = item.Admin
+    user.enabled = item.Enabled
+    user.password = item.Password
+    return user
+}
+
+function userToItem(user: User): any {
+    return {
+        "UserId": user.id,
+        "Email": user.email,
+        "Password": user.password,
+        "Enabled": user.enabled,
+        "Admin": user.admin
+    }
+}
+
+export async function getAllUsers(): Promise<User[]> {
+    const params = {
+        TableName: tableName
     }
 
-    static userToItem(user: User): any {
-        return {
-            "UserId": user.id,
-            "Email": user.email,
-            "Password": user.password,
-            "Enabled": user.enabled,
-            "Admin": user.admin
+    const response = await documentClient.scan(params).promise()
+    return response.Items.map(itemToUser)
+}
+
+export async function getUserByEmail(email: String): Promise<User> {
+    const params = {
+        TableName: tableName,
+        FilterExpression: "Email = :email",
+        ExpressionAttributeValues: {
+            ":email": email
         }
     }
 
-    async getAllUsers(): Promise<User[]> {
-        const params = {
-            TableName: tableName
-        }
+    const response = await documentClient.scan(params).promise()
 
-        const response = await documentClient.scan(params).promise()
-        return response.Items.map(UserRepository.itemToUser)
+    if(response.Count === 0) {
+        return null
     }
 
-    async getUserByEmail(email: String): Promise<User> {
-        const params = {
-            TableName: tableName,
-            FilterExpression: "Email = :email",
-            ExpressionAttributeValues: {
-                ":email": email
-            }
-        }
+    return itemToUser(response.Items[0])
+}
 
-        const response = await documentClient.scan(params).promise()
-
-        if(response.Count === 0) {
-            return null
-        }
-
-        return UserRepository.itemToUser(response.Items[0])
+export async function saveUser(user: User): Promise<void> {
+    const params = {
+        TableName: tableName,
+        Item: userToItem(user)
     }
 
-    async saveUser(user: User): Promise<void> {
-        const params = {
-            TableName: tableName,
-            Item: UserRepository.userToItem(user)
-        }
-
-        await documentClient.put(params).promise()
-    }
+    await documentClient.put(params).promise()
 }

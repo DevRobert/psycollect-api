@@ -1,6 +1,7 @@
 import { Request, Response, Application } from "express"
 import * as AuthenticationController from "./controllers/AuthenticationController"
 import * as UserController from "./controllers/UserController"
+import * as TrackingController from "./controllers/TrackingController"
 
 export default class Routes {
     public static configure(app: Application): void {
@@ -13,24 +14,9 @@ export default class Routes {
         app.route('/users').get(UserController.getUsers)
         app.route('/users').post(UserController.createUser)
 
-        // Emotion
+        // Tracking
 
-        app.route('/emotions').get((request: Request, response: Response) => {
-            response.status(200).send({
-                "message": "emotions"
-            })
-        })
-
-        // Activity
-
-        app.route('/activities').get((request: Request, response: Response) => {
-            response.status(200).send({
-                "message": "activities"
-            })
-        })
-
-        // Daily report
-
-        // Analysis
+        app.route("/tracking/:date").get(TrackingController.getDayReport)
+        app.route("/tracking/:date").put(TrackingController.setDayReport)
     }
 }

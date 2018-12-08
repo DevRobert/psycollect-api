@@ -1,12 +1,10 @@
 import { Request, Response } from "express"
-import UserRepository from "../model/UserRepository"
+import * as UserRepository from "../model/UserRepository"
 import * as uuidv4 from "uuid/v4"
-import User from "../model/User";
-
-const userRepository = new UserRepository()
+import User from "../model/User"
 
 export async function getUsers(request: Request, response: Response) {
-    const users = await userRepository.getAllUsers()
+    const users = await UserRepository.getAllUsers()
 
     response.status(200).send(users.map(user => {
         return {
@@ -33,7 +31,7 @@ export async function createUser(request: Request, response: Response) {
     let existingUser = null;
     
     try {
-        existingUser = await userRepository.getUserByEmail(email)
+        existingUser = await UserRepository.getUserByEmail(email)
     }
     catch(error) {
         console.log(error)
@@ -81,7 +79,7 @@ export async function createUser(request: Request, response: Response) {
     user.setPassword(password)
 
     try {
-        await userRepository.saveUser(user)
+        await UserRepository.saveUser(user)
 
         response.status(200).send({
             id: user.id,

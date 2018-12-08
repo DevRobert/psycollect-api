@@ -1,10 +1,8 @@
 import { Request, Response } from "express";
 import * as jwt from "jsonwebtoken"
-import UserRepository from "../model/UserRepository";
+import * as UserRepository from "../model/UserRepository";
 import User from "../model/User";
 import * as config from "config"
-
-const userRepository = new UserRepository()
 
 export async function login(request: Request, response: Response) {
     let email = "";
@@ -38,7 +36,7 @@ export async function login(request: Request, response: Response) {
     let user: User
     
     try {
-        user = await userRepository.getUserByEmail(email)
+        user = await UserRepository.getUserByEmail(email)
         console.log("user ", user)
     }
     catch(error) {
@@ -82,7 +80,8 @@ export async function login(request: Request, response: Response) {
     const secret: string = config.get("jwt-secret")
 
     const token = jwt.sign(payload, secret, {
-        algorithm: "HS256"
+        algorithm: "HS256",
+        expiresIn: 60 * 20 // 20 minutes
     })
 
     response.status(200).send({
