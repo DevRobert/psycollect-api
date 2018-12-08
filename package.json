@@ -19,9 +19,13 @@
   },
   "homepage": "https://github.com/DevRobert/psycollect-api#readme",
   "dependencies": {
+    "@types/bcrypt": "^3.0.0",
     "@types/body-parser": "^1.17.0",
     "@types/express": "^4.16.0",
+    "aws-sdk": "^2.373.0",
+    "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "uuid": "^3.3.2"
   }
 }
