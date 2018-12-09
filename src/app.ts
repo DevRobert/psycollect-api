@@ -3,6 +3,7 @@ import * as expressJwt from "express-jwt"
 import * as bodyParser from "body-parser"
 import * as config from "config"
 import Routes from "./routes"
+import * as cors from "cors"
 
 class App {
     public app: express.Application
@@ -13,6 +14,8 @@ class App {
     }
 
     private config(): void {
+        this.app.use(cors())
+        
         this.app.use(bodyParser.json())
 
         this.app.use(expressJwt({

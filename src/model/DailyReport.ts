@@ -11,6 +11,14 @@ export default class DailyReport {
 
     constructor(reportId: DailyReportId) {
         this._reportId = reportId
+
+        EmotionSet.forEach(emotionName => {
+            this.trackEmotion(emotionName, EmotionValue.Unknown)
+        })
+
+        ActivitySet.forEach(activityName => {
+            this.trackActivity(activityName, ActivityValue.Unknown)
+        })
     }
 
     public get reportId(): DailyReportId {

@@ -21,8 +21,10 @@ function dailyReportToItem(dailyReport: DailyReport) {
 
     const Emotions = {}
 
-    dailyReport.emotions.forEach((EmotionValue, emotionName) => {
-        Emotions[emotionName] = EmotionValue.number
+    dailyReport.emotions.forEach((emotionValue, emotionName) => {
+        if(emotionValue !== EmotionValue.Unknown) {
+            Emotions[emotionName] = emotionValue.number
+        }
     })
 
     return {

@@ -1,12 +1,18 @@
 export default class EmotionValue {
+    private static _unknown: EmotionValue
     private static _weak: EmotionValue
     private static _medium: EmotionValue
     private static _strong: EmotionValue
 
     static initialize() {
-        EmotionValue._weak = new EmotionValue(0)
-        EmotionValue._medium = new EmotionValue(1)
-        EmotionValue._strong = new EmotionValue(2)
+        EmotionValue._unknown = new EmotionValue(0)
+        EmotionValue._weak = new EmotionValue(1)
+        EmotionValue._medium = new EmotionValue(2)
+        EmotionValue._strong = new EmotionValue(3)
+    }
+
+    public static get Unknown(): EmotionValue {
+        return EmotionValue._unknown
     }
 
     public static get Weak(): EmotionValue {
@@ -23,6 +29,9 @@ export default class EmotionValue {
 
     public static parseNumber(number: number): EmotionValue {
         switch(number) {
+            case EmotionValue.Unknown.number:
+                return EmotionValue.Unknown
+            
             case EmotionValue.Weak.number:
                 return EmotionValue.Weak
             

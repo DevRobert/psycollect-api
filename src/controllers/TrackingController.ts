@@ -40,11 +40,7 @@ export async function getDayReport(request: Request, response: Response) {
     }
 
     if(dailyReport == null) {
-        response.status(404).send({
-            error: "No data available."
-        })
-
-        return
+        dailyReport = new DailyReport(reportId)
     }
 
     const body = {
