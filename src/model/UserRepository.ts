@@ -1,8 +1,9 @@
 import User from "./User";
 import * as AWS from "aws-sdk"
+import * as config from "config"
 
 AWS.config.update({
-    region: "us-east-1"
+    region: config.get("aws-region")
 })
 
 const documentClient = new AWS.DynamoDB.DocumentClient()

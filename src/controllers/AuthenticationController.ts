@@ -81,7 +81,8 @@ export async function login(request: Request, response: Response) {
 
     const token = jwt.sign(payload, secret, {
         algorithm: "HS256",
-        expiresIn: 60 * 20 // 20 minutes
+        // expiresIn: 60 * 20 // 20 minutes
+        expiresIn: 60 * 60  * 24 // 24 hours
     })
 
     response.status(200).send({

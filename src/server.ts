@@ -1,4 +1,5 @@
 import app from "./app"
+import * as AWS from "aws-sdk"
 
 const PORT = 3001
 

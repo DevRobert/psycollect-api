@@ -1,3 +1,4 @@
 {
-    "jwt-secret": "LD7sRihgKd4MhPMkneyYNoxYzMFF3gj8"
+    "jwt-secret": "LD7sRihgKd4MhPMkneyYNoxYzMFF3gj8",
+    "aws-region": "us-east-1"
 }

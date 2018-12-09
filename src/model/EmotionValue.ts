@@ -3,7 +3,7 @@ export default class EmotionValue {
     private static _medium: EmotionValue
     private static _strong: EmotionValue
 
-    static() {
+    static initialize() {
         EmotionValue._weak = new EmotionValue(0)
         EmotionValue._medium = new EmotionValue(1)
         EmotionValue._strong = new EmotionValue(2)
@@ -33,7 +33,7 @@ export default class EmotionValue {
                 return EmotionValue.Strong
 
             default:
-                throw new Error('Invalid emotion number!')
+                throw new Error("Invalid emotion number '" + number + "'!")
         }
     }
 
@@ -47,3 +47,5 @@ export default class EmotionValue {
         return this._number
     }
 }
+
+EmotionValue.initialize()

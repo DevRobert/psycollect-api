@@ -13,7 +13,7 @@ export default class DailyReport {
         this._reportId = reportId
     }
 
-    public get ReportId(): DailyReportId {
+    public get reportId(): DailyReportId {
         return this._reportId
     }
 
@@ -27,7 +27,7 @@ export default class DailyReport {
 
     public trackEmotion(emotionName: string, emotionValue: EmotionValue): void {
         if(!EmotionSet.has(emotionName)) {
-            throw new Error("Invalid emotion name")
+            throw new Error("The emotion '" + emotionName + "' is unknown.")
         }
 
         this._emotions.set(emotionName, emotionValue)
@@ -35,7 +35,7 @@ export default class DailyReport {
 
     public trackActivity(activityName: string, activityValue: ActivityValue): void {
         if(!ActivitySet.has(activityName)) {
-            throw new Error("Invalid activity name")
+            throw new Error("The activity '" + activityName + "' is unknown.")
         }
 
         this._activities.set(activityName, activityValue)

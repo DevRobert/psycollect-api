@@ -3,7 +3,7 @@ export default class ActivityValue {
     private static _medium: ActivityValue
     private static _intensive: ActivityValue
 
-    static() {
+    static initialize() {
         ActivityValue._notDone = new ActivityValue(0)
         ActivityValue._medium = new ActivityValue(1)
         ActivityValue._intensive = new ActivityValue(2)
@@ -33,7 +33,7 @@ export default class ActivityValue {
                 return ActivityValue.Intensive
 
             default:
-                throw new Error('Invalid activity number!')
+                throw new Error("Invalid activity number '" + number + "'!")
         }
     }
 
@@ -47,3 +47,5 @@ export default class ActivityValue {
         return this._number
     }
 }
+
+ActivityValue.initialize()
