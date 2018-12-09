@@ -2,8 +2,9 @@ export default new Set([
     "Tennis",
     "Badminton",
     "Cycling",
-    "Swimming",
+    "Swimming",    
     "Friends",
+    "Programming",
     "Work",
     "Alcohol",
     "Smoking"
