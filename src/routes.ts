@@ -1,4 +1,4 @@
-import { Request, Response, Application } from "express"
+import { Application } from "express"
 import * as AuthenticationController from "./controllers/AuthenticationController"
 import * as UserController from "./controllers/UserController"
 import * as TrackingController from "./controllers/TrackingController"
