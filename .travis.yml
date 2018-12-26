@@ -19,3 +19,4 @@ deploy:
   local_dir: dist-zip
 after_deploy:
   - aws elasticbeanstalk create-application-version --application-name psycollect-api --version-label $TRAVIS_COMMIT --source-bundle={S3Bucket=psycollect-api,S3Key=$TRAVIS_COMMIT.zip} --region=us-east-1
+  - aws elasticbeanstalk deploy psycollect-api --label $TRAVIS_COMMIT
