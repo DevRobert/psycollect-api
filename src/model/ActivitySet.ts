@@ -4,6 +4,7 @@ export default new Set([
     "Cycling",
     "Swimming",    
     "Friends",
+    "Family",
     "Programming",
     "Work",
     "Alcohol",
