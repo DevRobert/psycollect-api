@@ -7,7 +7,6 @@ install:
   - sudo pip3 install awscli
   - npm install
 script:
-  - npm run test
   - npm run build
   - mkdir dist-zip
   - zip -r dist-zip/$TRAVIS_COMMIT.zip dist
