@@ -1,0 +1,22 @@
+sudo: required
+language: node_js
+node_js:
+  - "8"
+install:
+  - sudo apt-get -y install python3-pip python-dev
+  - sudo pip3 install awscli
+  - npm install
+script:
+  - npm run test
+  - npm run build
+  - mkdir dist-zip
+  - zip -r dist-zip/$TRAVIS_COMMIT.zip dist
+deploy:
+  provider: s3
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  bucket: psycollect-api
+  skip_cleanup: true
+  local_dir: dist-zip
+after_deploy:
+  - aws elasticbeanstalk create-application-version --application-name psycollect-api --version-label $TRAVIS_COMMIT --source-bundle={S3Bucket=psycollect-api,S3Key=$TRAVIS_COMMIT.zip}
