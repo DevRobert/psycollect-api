@@ -9,9 +9,7 @@ install:
 script:
   - npm run build
   - mkdir dist-zip
-  - cp package.json dist/
-  - cp package-lock.json dist/
-  - zip -r dist-zip/$TRAVIS_COMMIT.zip dist
+  - zip -r dist-zip/$TRAVIS_COMMIT.zip dist package.json package-lock.json
 deploy:
   provider: s3
   access_key_id: $AWS_ACCESS_KEY_ID
