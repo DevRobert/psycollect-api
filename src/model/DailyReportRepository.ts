@@ -80,3 +80,8 @@ export async function getDailyReport(reportId: DailyReportId): Promise<DailyRepo
 
     return itemToDailyReport(response.Item)
 }
+
+export async function getDailyReports(dailyReportIds: DailyReportId[]): Promise<DailyReport[]> {
+    const promises = dailyReportIds.map(dailyReportId => getDailyReport(dailyReportId))
+    return await Promise.all(promises)
+}
