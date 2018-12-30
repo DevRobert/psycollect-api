@@ -63,7 +63,7 @@ export async function getReport(request: Request, response: Response) {
         })
     })
 
-    response.status(400).send({
+    response.status(200).send({
         data
     })
 }
