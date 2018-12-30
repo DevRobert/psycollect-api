@@ -3,7 +3,7 @@ import * as AWS from "aws-sdk"
 import * as config from "config"
 
 AWS.config.update({
-    region: config.get("aws-region")
+    region: config.get("aws_region")
 })
 
 const documentClient = new AWS.DynamoDB.DocumentClient()

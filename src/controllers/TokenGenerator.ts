@@ -17,7 +17,7 @@ export function signToken(payload: Token, options?: Partial<Options>) {
         options = {}
     }
 
-    const secret = options.secret || config.get("jwt-secret") as string
+    const secret = options.secret || config.get("jwt_secret") as string
 
     return jwt.sign(payload, secret, {
         algorithm: "HS256",

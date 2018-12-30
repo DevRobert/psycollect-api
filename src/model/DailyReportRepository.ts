@@ -6,7 +6,7 @@ import EmotionValue from "./EmotionValue";
 import ActivityValue from "./ActivityValue";
 
 AWS.config.update({
-    region: config.get("aws-region")
+    region: config.get("aws_region")
 })
 
 const documentClient = new AWS.DynamoDB.DocumentClient()

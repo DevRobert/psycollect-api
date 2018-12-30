@@ -19,7 +19,7 @@ class App {
         this.app.use(bodyParser.json())
 
         this.app.use(expressJwt({
-            secret: config.get("jwt-secret"),
+            secret: config.get("jwt_secret"),
             algorithm: "HS256"
         }).unless({
             path: '/login'
