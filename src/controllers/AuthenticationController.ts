@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
-import * as jwt from "jsonwebtoken"
 import * as UserRepository from "../model/UserRepository";
 import User from "../model/User";
-import * as config from "config"
+import { signToken, Token } from "./TokenGenerator";
 
 export async function login(request: Request, response: Response) {
     let email = "";
@@ -71,19 +70,13 @@ export async function login(request: Request, response: Response) {
         })
     }
 
-    const payload = {
+    const payload: Token = {
         userid: user.id,
         email: user.email,
         admin: user.admin
     }
 
-    const secret: string = config.get("jwt-secret")
-
-    const token = jwt.sign(payload, secret, {
-        algorithm: "HS256",
-        // expiresIn: 60 * 20 // 20 minutes
-        expiresIn: 60 * 60  * 24 // 24 hours
-    })
+    const token = signToken(payload)
 
     response.status(200).send({
         token

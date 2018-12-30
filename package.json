@@ -5,7 +5,8 @@
   "scripts": {
     "build": "tsc",
     "dev": "concurrently \"tsc --watch\" \"nodemon dist/server.js\"",
-    "start": "node ./dist/server.js"
+    "start": "node ./dist/server.js",
+    "test": "mocha -r ts-node/register src/**/*.test.ts"
   },
   "repository": {
     "type": "git",
@@ -36,8 +37,15 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
+    "@types/supertest": "^2.0.7",
+    "chai": "^4.2.0",
     "concurrently": "^4.1.0",
+    "mocha": "^5.2.0",
     "nodemon": "^1.18.9",
+    "supertest": "^3.3.0",
+    "ts-node": "^7.0.1",
     "typescript": "^3.2.2"
   }
 }

@@ -26,6 +26,25 @@ class App {
         }))
 
         Routes.configure(this.app)
+
+        this.app.use((request, response) => {
+            response.status(404).send({
+                error: "Not Found"
+            })
+        })
+
+        this.app.use((error, request, response, next) => {
+            if(error.name === "UnauthorizedError") {
+                response.status(401).send({
+                    error: error.message
+                })
+
+                next()
+            }
+            else {
+                next(error)
+            }
+        })
     }
 }
 
