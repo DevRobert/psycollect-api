@@ -79,6 +79,8 @@ export async function login(request: Request, response: Response) {
     const token = signToken(payload)
 
     response.status(200).send({
-        token
+        token,
+        email: user.email,
+        admin: user.admin
     })
 }
