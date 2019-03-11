@@ -17,11 +17,11 @@ export default class DailyReportId {
         return this._day
     }
 
-    toString(): String {
+    toString(): string {
         return this._userId + "_" + this._day
     }
 
-    public static parseString(s: string): DailyReportId {
+    static parseString(s: string): DailyReportId {
         const userId = s.substring(0, s.length - "_0000-00-00".length)
         const date = s.substring(s.length - "0000-00-00".length, s.length)
         return new DailyReportId(userId, Day.parseString(date))

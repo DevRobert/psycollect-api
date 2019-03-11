@@ -21,19 +21,19 @@ export default class DailyReport {
         })
     }
 
-    public get reportId(): DailyReportId {
+    get reportId(): DailyReportId {
         return this._reportId
     }
 
-    public get emotions(): ReadonlyMap<string, EmotionValue> {
+    get emotions(): ReadonlyMap<string, EmotionValue> {
         return this._emotions
     }
 
-    public get activities(): ReadonlyMap<string, ActivityValue> {
+    get activities(): ReadonlyMap<string, ActivityValue> {
         return this._activities
     }
 
-    public trackEmotion(emotionName: string, emotionValue: EmotionValue): void {
+    trackEmotion(emotionName: string, emotionValue: EmotionValue): void {
         if(!EmotionSet.has(emotionName)) {
             throw new Error("The emotion '" + emotionName + "' is unknown.")
         }
@@ -41,7 +41,7 @@ export default class DailyReport {
         this._emotions.set(emotionName, emotionValue)
     }
 
-    public trackActivity(activityName: string, activityValue: ActivityValue): void {
+    trackActivity(activityName: string, activityValue: ActivityValue): void {
         if(!ActivitySet.has(activityName)) {
             throw new Error("The activity '" + activityName + "' is unknown.")
         }

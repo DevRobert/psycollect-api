@@ -7,7 +7,7 @@ AWS.config.update({
 })
 
 const documentClient = new AWS.DynamoDB.DocumentClient()
-const tableName = 'psycollect-users'
+const tableName = "psycollect-users"
 
 function itemToUser(item: any): User {
     const user = new User

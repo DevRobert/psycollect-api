@@ -39,7 +39,7 @@ export async function getDayReport(request: Request, response: Response) {
         return
     }
 
-    if(dailyReport == null) {
+    if(dailyReport === null) {
         dailyReport = new DailyReport(reportId)
     }
 

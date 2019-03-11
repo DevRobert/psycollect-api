@@ -3,6 +3,7 @@ import * as AuthenticationController from "./controllers/AuthenticationControlle
 import * as UserController from "./controllers/UserController"
 import * as TrackingController from "./controllers/TrackingController"
 import * as AnalyzeController from "./controllers/AnalyzeController"
+import * as GoalsController from "./controllers/GoalsController"
 
 export default class Routes {
     public static configure(app: Application): void {
@@ -23,5 +24,10 @@ export default class Routes {
         // Analyze
 
         app.route("/analyze").get(AnalyzeController.getReport)
+
+        // Goals
+
+        app.route("/goals").get(GoalsController.getGoals)
+        app.route("/goals").put(GoalsController.setGoals)
     }
 }
