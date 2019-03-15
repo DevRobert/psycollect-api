@@ -94,5 +94,5 @@ export async function setGoals(request: Request, response: Response) {
         return
     }
 
-    response.status(200).send()
+    response.status(200).send({})
 }
